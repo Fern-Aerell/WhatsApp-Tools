@@ -15,6 +15,7 @@ export default <{
         env('SOCKET_BROWSER_VERSION', '1.0.0')
     ],
     logger: pino({
+        level: env('SOCKET_LOGGER_PINO_LEVEL', 'silent'),
         transport: {
             target: env('SOCKET_LOGGER_PINO_TRANSPORT_TARGET', 'pino-pretty')!,
             options: {

@@ -1,5 +1,5 @@
 import CommandHandler from "../core/CommandHandler";
 
-export function execute(this: CommandHandler, args: string[]) {
-    this.wat.sendSimpleTextToSelf('Halo Dunia!');
+export async function execute(this: CommandHandler, args: string[]) {
+    this.wat.sendWatermarkTextToSelf('Halo Dunia!');
 }

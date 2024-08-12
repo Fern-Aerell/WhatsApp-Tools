@@ -1,4 +1,4 @@
 export default interface ICommandData {
     name: string,
-    execute: (args: string[]) => void
+    execute: (args: string[]) => Promise<void>
 };

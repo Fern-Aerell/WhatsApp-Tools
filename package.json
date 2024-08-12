@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node .",
     "build": "npx tsc --build",
-    "dev": "npx ts-node src/main.ts"
+    "dev": "npx ts-node src/main.ts",
+    "test": "npx jest"
   },
   "author": "Fern Aerell",
   "license": "ISC",
@@ -13,10 +14,14 @@
   "dependencies": {
     "@whiskeysockets/baileys": "^6.7.5",
     "dotenv": "^16.4.5",
+    "libphonenumber-js": "^1.11.5",
     "pino-pretty": "^11.2.1",
     "qrcode-terminal": "^0.12.0"
   },
   "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.4",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.3"
   }

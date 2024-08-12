@@ -1,3 +1,3 @@
 export default interface ICommand {
-    execute: (args: string[]) => void;
+    execute: (args: string[]) => Promise<void>;
 }

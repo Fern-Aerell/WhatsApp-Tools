@@ -9,6 +9,7 @@ class WhatsAppTools {
 
     private _commandHandler: CommandHandler;
     private _socket: ReturnType<typeof makeWASocket> | undefined;
+    private _reconnect: boolean = true;
 
     constructor() {
         this._commandHandler = new CommandHandler(this);
@@ -24,6 +25,10 @@ class WhatsAppTools {
 
     public get command() {
         return this._commandHandler;
+    }
+
+    public get reconnect() {
+        return this._reconnect;
     }
 
     public async run() {
@@ -63,29 +68,40 @@ class WhatsAppTools {
 
     }
 
-    async sendSimpleTextToSelf(text: string) {
+    public async stop() {
+        if(!this._socket) return;
+        await this.sendInfoToSelf('Service mati...');
+        this._reconnect = false;
+        this._socket.end(undefined);
+    }
+
+    public async sendNoWatermarkTextToSelf(text: string) {
         if(!this._socket || !this.user) return;
         await this._socket.sendMessage(this.user.id, {text: text});
     }
 
-    async sendInfoToSelf(text: string) {
-        this.sendSimpleTextToSelf(`[INFO]\n${text}`);
+    public async sendWatermarkTextToSelf(text: string) {
+        await this.sendNoWatermarkTextToSelf(`\`[WhatsApp Tools]\`\n${text}`);
     }
 
-    async sendPeringatanToSelf(text: string) {
-        this.sendSimpleTextToSelf(`[PERINGATAN]\n${text}`);
+    public async sendInfoToSelf(text: string) {
+        await this.sendNoWatermarkTextToSelf(`\`[WhatsApp Tools][Info]\`\n${text}`);
     }
 
-    async sendErrorToSelf(text: string) {
-        this.sendSimpleTextToSelf(`[ERROR]\n${text}`);
+    public async sendPeringatanToSelf(text: string) {
+        await this.sendNoWatermarkTextToSelf(`\`[WhatsApp Tools][Peringatan]\`\n${text}`);
     }
 
-    async sendSuksesToSelf(text: string) {
-        this.sendSimpleTextToSelf(`[SUKSES]\n${text}`);
+    public async sendErrorToSelf(text: string) {
+        await this.sendNoWatermarkTextToSelf(`\`[WhatsApp Tools][Error]\`\n${text}`);
     }
 
-    async sendGagalToSelf(text: string) {
-        this.sendSimpleTextToSelf(`[GAGAL]\n${text}`);
+    public async sendSuksesToSelf(text: string) {
+        await this.sendNoWatermarkTextToSelf(`\`[WhatsApp Tools][Sukses]\`\n${text}`);
+    }
+
+    public async sendGagalToSelf(text: string) {
+        await this.sendNoWatermarkTextToSelf(`\`[WhatsApp Tools][Gagal]\`\n${text}`);
     }
 
 }

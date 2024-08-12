@@ -58,15 +58,15 @@ export default class CommandHandler {
         const moreArgs = args.slice(1);
         let commandExecute = false;
 
-        this._commands.forEach((command) => {
+        for(const command of this._commands) {
             if(argsPrefix === `${this._prefix}${command.name}`) {
-                command.execute.apply(this, [moreArgs]);
+                await command.execute.apply(this, [moreArgs]);
                 commandExecute = true;
-                return;
+                break;
             }
-        });
+        }
 
-        if(!commandExecute) this._wat.sendInfoToSelf(`Perintah ${argsPrefix} tidak ada.`);
+        if(!commandExecute) this._wat.sendErrorToSelf(`Perintah ${argsPrefix} tidak ada.`);
     }
 
 }
