@@ -4,8 +4,8 @@
 
 ## Fitur Utama
 
-- **Broadcasting**: Kirim pesan ke banyak kontak sekaligus dengan mudah menggunakan satu perintah.
-- **Ekstraksi Nomor dari Grup**: Ekstrak nomor telepon dari anggota grup WhatsApp dengan cepat dan simpan untuk keperluan lebih lanjut.
+- **Broadcasting (Akan Datang)**: Kirim pesan ke banyak kontak sekaligus dengan mudah menggunakan satu perintah.
+- **Ekstraksi Nomor dari Grup (Akan Datang)**: Ekstrak nomor telepon dari anggota grup WhatsApp dengan cepat dan simpan untuk keperluan lebih lanjut.
 - **Eksekusi Perintah dengan Awalan `/`**: Jalankan berbagai perintah khusus hanya dengan mengetikkannya di chat pribadi Anda, tanpa perlu menggunakan aplikasi atau alat tambahan.
 - **Integrasi yang Mudah**: WhatsApp Tools terintegrasi langsung dengan akun WhatsApp Anda, tanpa perlu proses instalasi yang rumit.
 
