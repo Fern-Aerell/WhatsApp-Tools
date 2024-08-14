@@ -104,6 +104,13 @@ class WhatsAppTools {
         await this.sendNoWatermarkTextToSelf(`\`[WhatsApp Tools][Gagal]\`\n${text}`);
     }
 
+    public async numberCheck(number: string) {
+        if(!this._socket) return false;
+        const [result] = await this._socket?.onWhatsApp(number);
+        if(result != undefined && result.exists) return true;
+        return false;
+    }
+
 }
 
 export default WhatsAppTools;
