@@ -15,7 +15,19 @@ export async function run(this: WhatsAppTools, args: string[]) {
     await this.sendInfoToSelf('Memulai broadcast, untuk progress broadcast bisa kalian lihat di terminal.');
 
     const namaKita = 'Aerell';
-    const delay = 30000;
+    const delay = () => {
+        const index = Math.floor(Math.random() * 10) + 1;
+        const delayData = [
+            30000,   // 30 detik
+            50000,   // 50 detik
+            60000,   // 60 detik (1 menit)
+            70000,   // 70 detik
+            80000,   // 80 detik
+            90000,   // 90 detik (1 menit 30 detik)
+            100000,  // 100 detik
+        ];
+        return delayData[index];
+    };
 
     const datas = [
         { nama: "nama orang nya", nomor: "nomor orang nya" }
@@ -85,7 +97,7 @@ CEPAT TAMAT❗️`
 
         console.log(`${broadcastDataCounter} | ${data.nomor} broadcasting selesai... \n selanjutnya dalam ${delay} miliseconds...\r`);
 
-        await wait(delay);
+        await wait(delay());
 
         i++;
     }
