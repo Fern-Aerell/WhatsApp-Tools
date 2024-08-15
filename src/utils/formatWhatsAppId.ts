@@ -3,6 +3,6 @@ import formatPhoneNumber from "./formatPhoneNumber";
 
 export const whatsAppIdSuffix = '@s.whatsapp.net';
 
-export function formatWhatsAppId(phoneNumber: string, defaultCountry?: CountryCode) {
-    return `${formatPhoneNumber(phoneNumber, defaultCountry).replace('+', '')}${whatsAppIdSuffix}`;
+export function formatWhatsAppId(phoneNumber: string, defaultCountry: CountryCode) {
+    return `${formatPhoneNumber(phoneNumber, defaultCountry)}${whatsAppIdSuffix}`;
 }
