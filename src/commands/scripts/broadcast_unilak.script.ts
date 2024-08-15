@@ -10,6 +10,8 @@ import { formatWhatsAppId } from "../../utils/formatWhatsAppId";
 
 export async function run(this: WhatsAppTools, args: string[]) {
 
+    return;
+
     await this.sendInfoToSelf('Memulai broadcast, untuk progress broadcast bisa kalian lihat di terminal.');
 
     const namaKita = 'Aerell';

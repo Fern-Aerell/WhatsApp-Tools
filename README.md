@@ -3,9 +3,10 @@
 **WhatsApp Tools** adalah sebuah alat yang dirancang untuk memudahkan penggunaan WhatsApp dalam berbagai kasus seperti broadcasting, ekstraksi nomor dari grup, dan berbagai fungsi lainnya. Dengan menggunakan WhatsApp Tools, Anda dapat menjalankan perintah secara langsung dari chat pribadi dengan menggunakan awalan `/`, memungkinkan Anda untuk mengotomatisasi dan mempercepat berbagai tugas di WhatsApp.
 
 ## Fitur Utama
-
-- **Broadcasting (Akan Datang)**: Kirim pesan ke banyak kontak sekaligus dengan mudah menggunakan satu perintah.
-- **Ekstraksi Nomor dari Grup (Akan Datang)**: Ekstrak nomor telepon dari anggota grup WhatsApp dengan cepat dan simpan untuk keperluan lebih lanjut.
+- **Cek nomor**: Mengecek nomor apakah sudah terdaftar ke Whatsapp atau belum dengan cepat, tanpa harus mengecek satu-satu.
+- **Skrip**: Buat skrip kustom anda sendiri.
+<!-- - **Broadcasting (Akan Datang)**: Kirim pesan ke banyak kontak sekaligus dengan mudah menggunakan satu perintah.
+- **Ekstraksi Nomor dari Grup (Akan Datang)**: Ekstrak nomor telepon dari anggota grup WhatsApp dengan cepat dan simpan untuk keperluan lebih lanjut. -->
 - **Eksekusi Perintah dengan Awalan `/`**: Jalankan berbagai perintah khusus hanya dengan mengetikkannya di chat pribadi Anda, tanpa perlu menggunakan aplikasi atau alat tambahan.
 - **Integrasi yang Mudah**: WhatsApp Tools terintegrasi langsung dengan akun WhatsApp Anda, tanpa perlu proses instalasi yang rumit.
 
@@ -18,9 +19,11 @@
 
 ## Perintah
 
-- `/args_test` - Untuk mengetes argumen pada perintah.
+- `/args_test [arguments]` - Untuk mengetes argumen pada perintah.
 - `/halodunia` - Mengirimkan pesan halodunia ke diri sendiri.
 - `/service stop` - Untuk memberhentikan service.
+- `/number [kode negara] check [nomor yang mau di cek]` - Untuk mengecek apakah nomor terdaftar di whatsapp.
+- `/script [nama script]` - Untuk menjalankan script custom yang kalian buat.
 
 ## Kontribusi
 
