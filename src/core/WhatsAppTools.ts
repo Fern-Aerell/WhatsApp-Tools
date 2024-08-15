@@ -1,4 +1,4 @@
-import makeWASocket, { AuthenticationState, BaileysEventEmitter, proto, useMultiFileAuthState } from "@whiskeysockets/baileys";
+import makeWASocket, { useMultiFileAuthState } from "@whiskeysockets/baileys";
 import socketConfigs from "../configs/socket";
 import fs from 'fs';
 import path from 'path';
@@ -51,7 +51,9 @@ class WhatsAppTools {
             logger: socketConfigs.logger
         });
 
-        this._userJid = formatWhatsAppId(this.user!.id.split(':')[0], (env('AUTH_PHONE_NUMBER_COUNTRY_CODE', '') as CountryCode));
+        if(this.user) {
+            this._userJid = formatWhatsAppId(this.user!.id.split(':')[0], (env('AUTH_PHONE_NUMBER_COUNTRY_CODE', '') as CountryCode));
+        }
 
         // Dyanmic Event
         try {
