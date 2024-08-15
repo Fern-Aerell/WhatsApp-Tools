@@ -1,6 +1,8 @@
 import { BaileysEventMap, MessageUpsertType, proto } from "@whiskeysockets/baileys";
 import WhatsAppTools from "../core/WhatsAppTools";
 import { formatWhatsAppId } from "../utils/formatWhatsAppId";
+import { env } from "../core/Env";
+import { CountryCode } from "libphonenumber-js";
 
 export const event: keyof BaileysEventMap = 'messages.upsert';
 
@@ -13,7 +15,7 @@ export async function listener(this: WhatsAppTools, data: { messages: proto.IWeb
     const message = data.messages[0];
 
     // Jika message key remote jid tidak sama dengan user id dan message tidak ada
-    if(message.key.remoteJid !== formatWhatsAppId(this.user!.id.split(':')[0]) || !message.message) return;
+    if(message.key.remoteJid != this.userJid || !message.message) return;
     
     if(message.message && (message.message.conversation || (message.message.extendedTextMessage && message.message.extendedTextMessage.text))) {
         console.log('\n[WhatsApp Tools][Info]');

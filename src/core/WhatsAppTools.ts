@@ -1,15 +1,20 @@
-import makeWASocket, { AuthenticationState, BaileysEventEmitter, useMultiFileAuthState } from "@whiskeysockets/baileys";
+import makeWASocket, { AuthenticationState, BaileysEventEmitter, proto, useMultiFileAuthState } from "@whiskeysockets/baileys";
 import socketConfigs from "../configs/socket";
 import fs from 'fs';
 import path from 'path';
 import ISocketEvent from "../interfaces/ISocketEvent";
 import CommandHandler from "./CommandHandler";
+import { CountryCode } from "libphonenumber-js";
+import formatPhoneNumber from "../utils/formatPhoneNumber";
+import { formatWhatsAppId } from "../utils/formatWhatsAppId";
+import { env } from "./Env";
 
 class WhatsAppTools {
 
     private _commandHandler: CommandHandler;
     private _socket: ReturnType<typeof makeWASocket> | undefined;
     private _reconnect: boolean = true;
+    private _userJid: string | undefined;
 
     constructor() {
         this._commandHandler = new CommandHandler(this);
@@ -31,6 +36,10 @@ class WhatsAppTools {
         return this._reconnect;
     }
 
+    public get userJid() {
+        return this._userJid;
+    }
+
     public async run() {
 
         const { state, saveCreds } = await useMultiFileAuthState(socketConfigs.authFolderName);
@@ -41,6 +50,8 @@ class WhatsAppTools {
             browser: socketConfigs.browser,
             logger: socketConfigs.logger
         });
+
+        this._userJid = formatWhatsAppId(this.user!.id.split(':')[0], (env('AUTH_PHONE_NUMBER_COUNTRY_CODE', '') as CountryCode));
 
         // Dyanmic Event
         try {
@@ -77,36 +88,36 @@ class WhatsAppTools {
 
     public async sendNoWatermarkTextToSelf(text: string) {
         if(!this._socket || !this.user) return;
-        await this._socket.sendMessage(this.user.id, {text: text});
+        return await this._socket.sendMessage(this.user.id, {text: text});
     }
 
     public async sendWatermarkTextToSelf(text: string) {
-        await this.sendNoWatermarkTextToSelf(`\`[WhatsApp Tools]\`\n${text}`);
+        return await this.sendNoWatermarkTextToSelf(`\`[WhatsApp Tools]\`\n${text}`);
     }
 
     public async sendInfoToSelf(text: string) {
-        await this.sendNoWatermarkTextToSelf(`\`[WhatsApp Tools][Info]\`\n${text}`);
+        return await this.sendNoWatermarkTextToSelf(`\`[WhatsApp Tools][Info]\`\n${text}`);
     }
 
     public async sendPeringatanToSelf(text: string) {
-        await this.sendNoWatermarkTextToSelf(`\`[WhatsApp Tools][Peringatan]\`\n${text}`);
+        return await this.sendNoWatermarkTextToSelf(`\`[WhatsApp Tools][Peringatan]\`\n${text}`);
     }
 
     public async sendErrorToSelf(text: string) {
-        await this.sendNoWatermarkTextToSelf(`\`[WhatsApp Tools][Error]\`\n${text}`);
+        return await this.sendNoWatermarkTextToSelf(`\`[WhatsApp Tools][Error]\`\n${text}`);
     }
 
     public async sendSuksesToSelf(text: string) {
-        await this.sendNoWatermarkTextToSelf(`\`[WhatsApp Tools][Sukses]\`\n${text}`);
+        return await this.sendNoWatermarkTextToSelf(`\`[WhatsApp Tools][Sukses]\`\n${text}`);
     }
 
     public async sendGagalToSelf(text: string) {
-        await this.sendNoWatermarkTextToSelf(`\`[WhatsApp Tools][Gagal]\`\n${text}`);
+        return await this.sendNoWatermarkTextToSelf(`\`[WhatsApp Tools][Gagal]\`\n${text}`);
     }
 
-    public async numberCheck(number: string) {
+    public async numberCheck(number: string, countryCode: CountryCode) {
         if(!this._socket) return false;
-        const [result] = await this._socket?.onWhatsApp(number);
+        const [result] = await this._socket.onWhatsApp(formatPhoneNumber(number, countryCode));
         if(result != undefined && result.exists) return true;
         return false;
     }
