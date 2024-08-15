@@ -34,11 +34,11 @@ export default class CommandHandler {
             const commandFolderPath = path.join(__dirname, '../commands');
             const commandFiles = fs.readdirSync(commandFolderPath);
             for(const file of commandFiles) {
-                if(file.endsWith('.ts') || file.endsWith('.js')) {
+                if(file.endsWith('.command.ts') || file.endsWith('.command.js')) {
                     const filePath = path.join(commandFolderPath, file);
                     const command: ICommand = await import(filePath);
                     this._commands.push({
-                        name: file.replace('.ts', '').replace('.js', ''),
+                        name: file.replace('.command.ts', '').replace('.command.js', ''),
                         execute: command.execute
                     });
                     console.log(`Import file command '${file}'...`);

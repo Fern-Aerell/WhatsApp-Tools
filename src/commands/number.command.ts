@@ -4,7 +4,7 @@ import CommandHandler from "../core/CommandHandler";
 export async function execute(this: CommandHandler, args: string[]) {
 
     if(!(args.length > 0)) {
-        await this.wat.sendErrorToSelf('Silahkan setidak nya masukkan 1 argument pada paerintah /number.');
+        await this.wat.sendErrorToSelf('Silahkan setidak nya masukkan 1 argument pada perintah /number.');
         return;
     }
 

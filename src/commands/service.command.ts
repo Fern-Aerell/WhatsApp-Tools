@@ -3,7 +3,7 @@ import CommandHandler from "../core/CommandHandler";
 export async function execute(this: CommandHandler, args: string[]) {
 
     if(!(args.length > 0)) {
-        this.wat.sendErrorToSelf('Silahkan setidak nya masukkan 1 argument pada paerintah /service.');
+        this.wat.sendErrorToSelf('Silahkan setidak nya masukkan 1 argument pada perintah /service.');
         return;
     }
 

@@ -124,6 +124,21 @@ class WhatsAppTools {
         return false;
     }
 
+    public async sendTextTo(jid: string, text: string) {
+        if(!this._socket) return;
+        return await this._socket.sendMessage(jid, {text: text});
+    }
+
+    public async sendImageTo(jid: string, imageUrl: string) {
+        if(!this._socket) return;
+        return await this._socket.sendMessage(jid, {image: {url: imageUrl}});
+    }
+
+    public async sendVideoWithCaptionTo(jid: string, videoUrl: string, caption: string) {
+        if(!this._socket) return;
+        return await this._socket.sendMessage(jid, {video: fs.readFileSync(videoUrl), caption: caption});
+    }
+
 }
 
 export default WhatsAppTools;
