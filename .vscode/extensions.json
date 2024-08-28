@@ -5,6 +5,10 @@
         "usernamehw.errorlens",
         "kisstkondoros.vscode-gutter-preview",
         "pkief.material-icon-theme",
-        "christian-kohler.path-intellisense"
+        "christian-kohler.path-intellisense",
+        "digitalbrainstem.javascript-ejs-support",
+        "esbenp.prettier-vscode",
+        "bradlc.vscode-tailwindcss",
+        "dbaeumer.vscode-eslint"
     ]
 }
