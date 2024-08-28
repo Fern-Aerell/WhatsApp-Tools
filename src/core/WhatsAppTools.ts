@@ -139,6 +139,11 @@ class WhatsAppTools {
         return await this._socket.sendMessage(jid, {video: fs.readFileSync(videoUrl), caption: caption});
     }
 
+    public async sendImageWithCaption(jid: string, imageUrl: string, caption: string) {
+        if(!this._socket) return;
+        return await this._socket.sendMessage(jid, {image: {url: imageUrl}, caption: caption});
+    }
+
 }
 
 export default WhatsAppTools;
