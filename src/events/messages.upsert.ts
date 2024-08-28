@@ -1,8 +1,5 @@
 import { BaileysEventMap, MessageUpsertType, proto } from "@whiskeysockets/baileys";
 import WhatsAppTools from "../core/WhatsAppTools";
-import { formatWhatsAppId } from "../utils/formatWhatsAppId";
-import { env } from "../core/Env";
-import { CountryCode } from "libphonenumber-js";
 
 export const event: keyof BaileysEventMap = 'messages.upsert';
 

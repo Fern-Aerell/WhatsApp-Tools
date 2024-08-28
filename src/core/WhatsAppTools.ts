@@ -6,7 +6,7 @@ import ISocketEvent from "../interfaces/ISocketEvent";
 import CommandHandler from "./CommandHandler";
 import { CountryCode } from "libphonenumber-js";
 import formatPhoneNumber from "../utils/formatPhoneNumber";
-import { formatWhatsAppId } from "../utils/formatWhatsAppId";
+import formatWhatsAppId from "../utils/formatWhatsAppId";
 import { env } from "./Env";
 
 class WhatsAppTools {
