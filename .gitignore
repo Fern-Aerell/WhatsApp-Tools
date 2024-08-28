@@ -1,3 +1,6 @@
 dist
 authentication
 node_modules
+src/commands/scripts/*
+!src/commands/scripts/.gitkeep
+!src/commands/scripts/test.script.ts
